@@ -20,7 +20,13 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
-app.UseHttpsRedirection();
+// Render (und aehnliche PaaS-Anbieter) terminieren TLS am Edge und leiten
+// intern per HTTP weiter - ein zusaetzlicher Redirect hier wuerde eine
+// Redirect-Schlaufe verursachen.
+if (Environment.GetEnvironmentVariable("RENDER") != "true")
+{
+    app.UseHttpsRedirection();
+}
 app.UseStaticFiles();
 
 app.UseRouting();
