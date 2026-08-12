@@ -43,35 +43,37 @@
     <button type="submit" class="btn btn-pizza">Anlegen</button>
 </form>
 
-<table class="table cart-table mt-4">
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th>Beschreibung</th>
-            <th>Grösse</th>
-            <th>Preis</th>
-            <th>Glutenfrei</th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var pizza in Model.PizzaList)
-        {
+<div class="table-responsive">
+    <table class="table cart-table mt-4">
+        <thead>
             <tr>
-                <td>@pizza.Name</td>
-                <td class="text-muted">@pizza.Description</td>
-                <td>@pizza.Size</td>
-                <td>@($"{pizza.Price:C}")</td>
-                <td>@(pizza.IsGlutenFree ? "✔️" : string.Empty)</td>
-                <td>
-                    <form method="post" asp-page-handler="Delete" asp-route-id="@pizza.Id">
-                        <button class="btn btn-danger btn-sm">Löschen</button>
-                    </form>
-                </td>
+                <th>Name</th>
+                <th>Beschreibung</th>
+                <th>Grösse</th>
+                <th>Preis</th>
+                <th>Glutenfrei</th>
+                <th></th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var pizza in Model.PizzaList)
+            {
+                <tr>
+                    <td>@pizza.Name</td>
+                    <td class="text-muted">@pizza.Description</td>
+                    <td>@pizza.Size</td>
+                    <td>@($"{pizza.Price:C}")</td>
+                    <td>@(pizza.IsGlutenFree ? "✔️" : string.Empty)</td>
+                    <td>
+                        <form method="post" asp-page-handler="Delete" asp-route-id="@pizza.Id">
+                            <button class="btn btn-danger btn-sm">Löschen</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />

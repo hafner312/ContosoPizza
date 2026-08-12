@@ -17,42 +17,44 @@
 }
 else
 {
-    <table class="table cart-table">
-        <thead>
-            <tr>
-                <th>Pizza</th>
-                <th>Grösse</th>
-                <th>Preis</th>
-                <th>Menge</th>
-                <th>Zwischensumme</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var line in Model.Lines)
-            {
+    <div class="table-responsive">
+        <table class="table cart-table">
+            <thead>
                 <tr>
-                    <td>@ContosoPizza.Models.MenuItem.EmojiFor(line.Pizza.Name ?? "") @line.Pizza.Name</td>
-                    <td>@line.Pizza.Size</td>
-                    <td>@($"{line.Pizza.Price:C}")</td>
-                    <td>
-                        <form method="post" asp-page-handler="UpdateQuantity" class="qty-form">
-                            <input type="hidden" name="pizzaId" value="@line.Pizza.Id" />
-                            <input type="number" name="quantity" value="@line.Quantity" min="1" max="20" class="form-control qty-input" />
-                            <button type="submit" class="btn btn-pizza-outline btn-sm">Aktualisieren</button>
-                        </form>
-                    </td>
-                    <td>@($"{line.LineTotal:C}")</td>
-                    <td>
-                        <form method="post" asp-page-handler="Remove">
-                            <input type="hidden" name="pizzaId" value="@line.Pizza.Id" />
-                            <button type="submit" class="btn btn-danger btn-sm">Entfernen</button>
-                        </form>
-                    </td>
+                    <th>Pizza</th>
+                    <th>Grösse</th>
+                    <th>Preis</th>
+                    <th>Menge</th>
+                    <th>Zwischensumme</th>
+                    <th></th>
                 </tr>
-            }
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                @foreach (var line in Model.Lines)
+                {
+                    <tr>
+                        <td>@ContosoPizza.Models.MenuItem.EmojiFor(line.Pizza.Name ?? "") @line.Pizza.Name</td>
+                        <td>@line.Pizza.Size</td>
+                        <td>@($"{line.Pizza.Price:C}")</td>
+                        <td>
+                            <form method="post" asp-page-handler="UpdateQuantity" class="qty-form">
+                                <input type="hidden" name="pizzaId" value="@line.Pizza.Id" />
+                                <input type="number" name="quantity" value="@line.Quantity" min="1" max="20" class="form-control qty-input" />
+                                <button type="submit" class="btn btn-pizza-outline btn-sm">Aktualisieren</button>
+                            </form>
+                        </td>
+                        <td>@($"{line.LineTotal:C}")</td>
+                        <td>
+                            <form method="post" asp-page-handler="Remove">
+                                <input type="hidden" name="pizzaId" value="@line.Pizza.Id" />
+                                <button type="submit" class="btn btn-danger btn-sm">Entfernen</button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
 
     <div class="cart-summary">
         <div class="cart-total">Gesamt: <strong>@($"{Model.Total:C}")</strong></div>

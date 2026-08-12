@@ -12,17 +12,19 @@
         <p class="text-muted">Deine Bestellung <strong>#@Model.Order.Id</strong> wurde erfolgreich aufgegeben.</p>
         <p class="confirmation-eta">Geschätzte Lieferzeit: <strong>~@Model.EstimatedMinutes Minuten</strong></p>
 
-        <table class="table cart-table">
-            <tbody>
-                @foreach (var item in Model.Order.Items)
-                {
-                    <tr>
-                        <td>@item.Quantity &times; @item.PizzaName</td>
-                        <td>@($"{item.UnitPrice * item.Quantity:C}")</td>
-                    </tr>
-                }
-            </tbody>
-        </table>
+        <div class="table-responsive">
+            <table class="table cart-table">
+                <tbody>
+                    @foreach (var item in Model.Order.Items)
+                    {
+                        <tr>
+                            <td>@item.Quantity &times; @item.PizzaName</td>
+                            <td>@($"{item.UnitPrice * item.Quantity:C}")</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
 
         <div class="cart-summary">
             <div class="cart-total">Gesamt: <strong>@($"{Model.Order.Total:C}")</strong></div>
