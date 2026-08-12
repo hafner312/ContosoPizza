@@ -12,6 +12,15 @@ builder.Services.AddDbContext<PizzaContext>(options =>
 
 var app = builder.Build();
 
+// Datenbank beim Start anlegen/aktualisieren - der SQLite-Container hat bei
+// jedem Deploy ein frisches, leeres Dateisystem, daher reicht es nicht, sich
+// auf eine im Repo mitgelieferte .db-Datei zu verlassen.
+using (var scope = app.Services.CreateScope())
+{
+    var db = scope.ServiceProvider.GetRequiredService<PizzaContext>();
+    db.Database.Migrate();
+}
+
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
