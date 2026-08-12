@@ -396,3 +396,6 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+
+# Lokale SQLite-Datenbank (wird beim Start ueber Migrationen + Seed neu erzeugt)
+ContosoPizza.db*

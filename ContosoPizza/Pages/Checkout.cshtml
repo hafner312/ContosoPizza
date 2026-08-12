@@ -1,0 +1,59 @@
+@page
+@model ContosoPizza.Pages.CheckoutModel
+@{
+    ViewData["Title"] = "Kasse";
+}
+
+<div class="page-header">
+    <h1>Kasse</h1>
+</div>
+
+<div class="checkout-layout">
+    <form method="post" class="checkout-form">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <div class="form-group">
+            <label asp-for="CustomerName" class="control-label">Name</label>
+            <input asp-for="CustomerName" class="form-control" placeholder="Max Mustermann" />
+            <span asp-validation-for="CustomerName" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Address" class="control-label">Lieferadresse</label>
+            <input asp-for="Address" class="form-control" placeholder="Musterstrasse 1, 8000 Zürich" />
+            <span asp-validation-for="Address" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="PaymentMethod" class="control-label">Zahlungsart</label>
+            <select asp-for="PaymentMethod" class="form-select">
+                <option value="Karte">Kreditkarte</option>
+                <option value="Twint">Twint</option>
+                <option value="Barzahlung">Barzahlung bei Lieferung</option>
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-pizza btn-lg">Jetzt kostenpflichtig bestellen</button>
+    </form>
+
+    <aside class="checkout-summary">
+        <h3>Deine Bestellung</h3>
+        <ul class="checkout-summary-list">
+            @foreach (var line in Model.Lines)
+            {
+                <li>
+                    <span>@line.Quantity &times; @line.Pizza.Name (@line.Pizza.Size)</span>
+                    <span>@($"{line.LineTotal:C}")</span>
+                </li>
+            }
+        </ul>
+        <div class="checkout-summary-total">
+            <span>Gesamt</span>
+            <strong>@($"{Model.Total:C}")</strong>
+        </div>
+    </aside>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

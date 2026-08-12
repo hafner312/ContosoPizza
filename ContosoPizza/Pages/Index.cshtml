@@ -1,11 +1,31 @@
-﻿@page
+@page
 @model IndexModel
 @{
     ViewData["Title"] = "The Home for Pizza Lovers";
     TimeSpan timeInBusiness = DateTime.Now - new DateTime(2018, 8, 14);
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome to Contoso Pizza</h1>
-    <p class="lead">The best pizza in town for @Convert.ToInt32(timeInBusiness.TotalDays) days!</p>
+<div class="hero">
+    <div class="hero-emoji">🍕</div>
+    <h1 class="display-4">Willkommen bei Contoso Pizza</h1>
+    <p class="lead">Die beste Pizza der Stadt seit @Convert.ToInt32(timeInBusiness.TotalDays / 365) Jahren!</p>
+    <a asp-page="/Menu" class="btn btn-pizza btn-lg">Jetzt bestellen</a>
+</div>
+
+<div class="feature-grid">
+    <div class="feature-card">
+        <div class="feature-icon">🔥</div>
+        <h3>Frisch aus dem Steinofen</h3>
+        <p>Jede Pizza wird erst nach Bestelleingang frisch zubereitet.</p>
+    </div>
+    <div class="feature-card">
+        <div class="feature-icon">🚴</div>
+        <h3>Schnelle Lieferung</h3>
+        <p>In der Regel innerhalb von 25&ndash;45 Minuten bei dir.</p>
+    </div>
+    <div class="feature-card">
+        <div class="feature-icon">🌾</div>
+        <h3>Auch glutenfrei</h3>
+        <p>Mehrere Sorten sind als glutenfreie Variante erhältlich.</p>
+    </div>
 </div>

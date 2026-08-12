@@ -9,6 +9,9 @@ public class Pizza
     [Required]
     public string? Name { get; set; }
 
+    [StringLength(300)]
+    public string? Description { get; set; }
+
     public PizzaSize Size { get; set; }
     public bool IsGlutenFree { get; set; }
 

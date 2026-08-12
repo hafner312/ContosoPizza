@@ -1,0 +1,57 @@
+@page
+@model ContosoPizza.Pages.MenuModel
+@{
+    ViewData["Title"] = "Speisekarte";
+}
+
+<div class="page-header">
+    <h1>Speisekarte</h1>
+    <p class="text-muted">Frisch aus dem Steinofen – wähle deine Grösse und leg los.</p>
+</div>
+
+@if (!string.IsNullOrEmpty(Model.Confirmation))
+{
+    <div class="alert alert-success">@Model.Confirmation</div>
+}
+
+@if (Model.MenuItems.Count == 0)
+{
+    <div class="empty-state">
+        <p>Die Speisekarte ist gerade leer.</p>
+        <a asp-page="/PizzaAdmin" class="btn btn-pizza-outline">Zur Verwaltung</a>
+    </div>
+}
+else
+{
+    <div class="menu-grid">
+        @foreach (var item in Model.MenuItems)
+        {
+            <div class="pizza-card">
+                <div class="pizza-card-emoji">@ContosoPizza.Models.MenuItem.EmojiFor(item.Name)</div>
+                <div class="pizza-card-body">
+                    <h3>
+                        @item.Name
+                        @if (item.IsGlutenFree)
+                        {
+                            <span class="badge-tag">glutenfrei</span>
+                        }
+                    </h3>
+                    <p class="pizza-card-desc">@item.Description</p>
+
+                    <form method="post" asp-page-handler="AddToCart" class="pizza-card-form">
+                        <select name="pizzaId" class="form-select" aria-label="Grösse wählen">
+                            @foreach (var variant in item.Variants)
+                            {
+                                <option value="@variant.Id">@variant.Size &ndash; @($"{variant.Price:C}")</option>
+                            }
+                        </select>
+                        <div class="pizza-card-form-row">
+                            <input type="number" name="quantity" value="1" min="1" max="20" class="form-control qty-input" aria-label="Menge" />
+                            <button type="submit" class="btn btn-pizza">In den Warenkorb</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        }
+    </div>
+}

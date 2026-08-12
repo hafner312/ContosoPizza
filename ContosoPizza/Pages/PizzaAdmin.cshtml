@@ -1,0 +1,78 @@
+@page
+@model ContosoPizza.Pages.PizzaAdminModel
+@{
+    ViewData["Title"] = "Speisekarten-Verwaltung";
+}
+
+<div class="page-header">
+    <h1>Speisekarten-Verwaltung</h1>
+    <p class="text-muted">Neue Pizza-Varianten anlegen oder bestehende aus dem Katalog entfernen.</p>
+</div>
+
+<form method="post" class="admin-form">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="form-row">
+        <div class="form-group">
+            <label asp-for="NewPizza.Name" class="control-label">Name</label>
+            <input asp-for="NewPizza.Name" class="form-control" />
+            <span asp-validation-for="NewPizza.Name" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="NewPizza.Size" class="control-label">Grösse</label>
+            <select asp-for="NewPizza.Size" class="form-select">
+                <option value="Small">Small</option>
+                <option value="Medium">Medium</option>
+                <option value="Large">Large</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label asp-for="NewPizza.Price" class="control-label">Preis</label>
+            <input asp-for="NewPizza.Price" class="form-control" />
+            <span asp-validation-for="NewPizza.Price" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label asp-for="NewPizza.Description" class="control-label">Beschreibung</label>
+        <input asp-for="NewPizza.Description" class="form-control" placeholder="Zutaten, kurze Beschreibung" />
+    </div>
+    <div class="form-group form-check">
+        <label class="form-check-label">
+            <input class="form-check-input" asp-for="NewPizza.IsGlutenFree" /> @Html.DisplayNameFor(model => model.NewPizza.IsGlutenFree)
+        </label>
+    </div>
+    <button type="submit" class="btn btn-pizza">Anlegen</button>
+</form>
+
+<table class="table cart-table mt-4">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Beschreibung</th>
+            <th>Grösse</th>
+            <th>Preis</th>
+            <th>Glutenfrei</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var pizza in Model.PizzaList)
+        {
+            <tr>
+                <td>@pizza.Name</td>
+                <td class="text-muted">@pizza.Description</td>
+                <td>@pizza.Size</td>
+                <td>@($"{pizza.Price:C}")</td>
+                <td>@(pizza.IsGlutenFree ? "✔️" : string.Empty)</td>
+                <td>
+                    <form method="post" asp-page-handler="Delete" asp-route-id="@pizza.Id">
+                        <button class="btn btn-danger btn-sm">Löschen</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

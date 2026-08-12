@@ -63,5 +63,9 @@ namespace ContosoPizza.Data
         // Das ist die einzige Tabelle in diesem Projekt.
         // ---------------------------------------------------------------------
         public DbSet<ContosoPizza.Models.Pizza>? Pizzas { get; set; }
+
+        // Bestellungen und ihre Positionen (siehe Models/Order.cs, Models/OrderItem.cs).
+        public DbSet<ContosoPizza.Models.Order> Orders { get; set; } = default!;
+        public DbSet<ContosoPizza.Models.OrderItem> OrderItems { get; set; } = default!;
     }
 }

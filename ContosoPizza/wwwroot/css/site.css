@@ -1,22 +1,369 @@
+:root {
+  --pizza-red: #b3312c;
+  --pizza-red-dark: #8f2622;
+  --pizza-green: #2f5233;
+  --pizza-cream: #fdf6ea;
+  --pizza-cream-elevated: #fffdf8;
+  --pizza-gold: #d99a2b;
+  --pizza-text: #362a20;
+  --pizza-text-muted: #7a6a5a;
+  --pizza-border: #ecdfc8;
+  --font-display: Georgia, "Times New Roman", serif;
+}
+
 html {
-    font-size: 14px;
-}
-
-@media (min-width: 768px) {
-    html {
-        font-size: 16px;
-    }
-}
-
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
-}
-
-html {
-    position: relative;
-    min-height: 100%;
+  font-size: 16px;
 }
 
 body {
-    margin-bottom: 60px;
+  background-color: var(--pizza-cream);
+  color: var(--pizza-text);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  margin-bottom: 60px;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  color: var(--pizza-red-dark);
+}
+
+/* ---------- Navbar ---------- */
+.pizza-navbar {
+  background: var(--pizza-red);
+}
+
+.pizza-navbar .navbar-brand {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.pizza-navbar .nav-link {
+  color: rgba(255, 255, 255, 0.88);
+  font-weight: 500;
+}
+
+.pizza-navbar .nav-link:hover {
+  color: #fff;
+}
+
+.cart-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: rgba(255, 255, 255, 0.14);
+  border-radius: 999px;
+  padding: 0.35rem 0.9rem !important;
+}
+
+.cart-badge {
+  background: var(--pizza-gold);
+  color: #3a2a05;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.05rem 0.45rem;
+}
+
+/* ---------- Buttons ---------- */
+.btn-pizza {
+  background: var(--pizza-red);
+  border-color: var(--pizza-red);
+  color: #fff;
+  font-weight: 600;
+}
+
+.btn-pizza:hover {
+  background: var(--pizza-red-dark);
+  border-color: var(--pizza-red-dark);
+  color: #fff;
+}
+
+.btn-pizza-outline {
+  background: transparent;
+  border: 1px solid var(--pizza-red);
+  color: var(--pizza-red);
+  font-weight: 600;
+}
+
+.btn-pizza-outline:hover {
+  background: var(--pizza-red);
+  color: #fff;
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.15rem var(--pizza-cream), 0 0 0 0.3rem var(--pizza-gold);
+}
+
+/* ---------- Page header ---------- */
+.page-header {
+  margin-bottom: 1.75rem;
+}
+
+/* ---------- Hero (Startseite) ---------- */
+.hero {
+  text-align: center;
+  padding: 3rem 1rem 2.5rem;
+}
+
+.hero-emoji {
+  font-size: 4rem;
+  margin-bottom: 0.5rem;
+}
+
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.25rem;
+  margin: 2rem 0 3rem;
+}
+
+.feature-card {
+  background: var(--pizza-cream-elevated);
+  border: 1px solid var(--pizza-border);
+  border-radius: 12px;
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.feature-icon {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+/* ---------- Menu / pizza cards ---------- */
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.25rem;
+}
+
+.pizza-card {
+  background: var(--pizza-cream-elevated);
+  border: 1px solid var(--pizza-border);
+  border-radius: 14px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 2px 10px rgba(54, 42, 32, 0.06);
+  transition: box-shadow 0.15s ease, transform 0.15s ease;
+}
+
+.pizza-card:hover {
+  box-shadow: 0 8px 22px rgba(54, 42, 32, 0.12);
+  transform: translateY(-2px);
+}
+
+.pizza-card-emoji {
+  font-size: 2.75rem;
+  text-align: center;
+  padding: 1.1rem 0 0.4rem;
+}
+
+.pizza-card-body {
+  padding: 0 1.25rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex: 1;
+}
+
+.pizza-card-body h3 {
+  font-size: 1.15rem;
+  margin-bottom: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.pizza-card-desc {
+  color: var(--pizza-text-muted);
+  font-size: 0.88rem;
+  flex: 1;
+}
+
+.badge-tag {
+  background: var(--pizza-green);
+  color: #fff;
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  border-radius: 999px;
+  padding: 0.15rem 0.55rem;
+}
+
+.pizza-card-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.pizza-card-form .form-select {
+  width: 100%;
+}
+
+.pizza-card-form-row {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.pizza-card-form-row .btn {
+  flex: 1;
+}
+
+.qty-input {
+  max-width: 70px;
+  flex: none;
+}
+
+/* ---------- Cart / tables ---------- */
+.cart-table {
+  background: var(--pizza-cream-elevated);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.qty-form {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.cart-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 1.5rem;
+  padding: 1rem 1.25rem;
+  background: var(--pizza-cream-elevated);
+  border: 1px solid var(--pizza-border);
+  border-radius: 10px;
+}
+
+.cart-total {
+  font-size: 1.1rem;
+}
+
+/* ---------- Checkout ---------- */
+.checkout-layout {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 2rem;
+}
+
+@media (max-width: 768px) {
+  .checkout-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+.checkout-summary {
+  background: var(--pizza-cream-elevated);
+  border: 1px solid var(--pizza-border);
+  border-radius: 12px;
+  padding: 1.5rem;
+  align-self: start;
+}
+
+.checkout-summary-list {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0;
+}
+
+.checkout-summary-list li {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.4rem 0;
+  border-bottom: 1px solid var(--pizza-border);
+  font-size: 0.9rem;
+}
+
+.checkout-summary-total {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.15rem;
+  padding-top: 0.75rem;
+}
+
+/* ---------- Confirmation ---------- */
+.confirmation-card {
+  max-width: 640px;
+  margin: 2rem auto;
+  background: var(--pizza-cream-elevated);
+  border: 1px solid var(--pizza-border);
+  border-radius: 14px;
+  padding: 2.5rem;
+  text-align: center;
+}
+
+.confirmation-icon {
+  font-size: 3rem;
+  margin-bottom: 0.5rem;
+}
+
+.confirmation-eta {
+  font-size: 1.05rem;
+  margin: 1rem 0;
+}
+
+/* ---------- Orders ---------- */
+.orders-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.order-row {
+  background: var(--pizza-cream-elevated);
+  border: 1px solid var(--pizza-border);
+  border-radius: 10px;
+  padding: 0.9rem 1.25rem;
+}
+
+.order-row-head {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.3rem;
+}
+
+.order-row-body {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* ---------- Empty state ---------- */
+.empty-state {
+  text-align: center;
+  padding: 3rem 1rem;
+  background: var(--pizza-cream-elevated);
+  border: 1px dashed var(--pizza-border);
+  border-radius: 12px;
+}
+
+/* ---------- Admin form ---------- */
+.admin-form {
+  background: var(--pizza-cream-elevated);
+  border: 1px solid var(--pizza-border);
+  border-radius: 12px;
+  padding: 1.5rem;
+}
+
+.admin-form .form-row {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 1rem;
+}
+
+@media (max-width: 768px) {
+  .admin-form .form-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+.form-group {
+  margin-bottom: 1rem;
 }

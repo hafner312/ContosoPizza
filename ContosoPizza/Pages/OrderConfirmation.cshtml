@@ -1,0 +1,35 @@
+@page "{id:int}"
+@model ContosoPizza.Pages.OrderConfirmationModel
+@{
+    ViewData["Title"] = "Bestellbestätigung";
+}
+
+@if (Model.Order != null)
+{
+    <div class="confirmation-card">
+        <div class="confirmation-icon">✅</div>
+        <h1>Danke, @Model.Order.CustomerName!</h1>
+        <p class="text-muted">Deine Bestellung <strong>#@Model.Order.Id</strong> wurde erfolgreich aufgegeben.</p>
+        <p class="confirmation-eta">Geschätzte Lieferzeit: <strong>~@Model.EstimatedMinutes Minuten</strong></p>
+
+        <table class="table cart-table">
+            <tbody>
+                @foreach (var item in Model.Order.Items)
+                {
+                    <tr>
+                        <td>@item.Quantity &times; @item.PizzaName</td>
+                        <td>@($"{item.UnitPrice * item.Quantity:C}")</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <div class="cart-summary">
+            <div class="cart-total">Gesamt: <strong>@($"{Model.Order.Total:C}")</strong></div>
+        </div>
+
+        <p class="text-muted">Lieferung an: @Model.Order.Address &middot; Zahlung: @Model.Order.PaymentMethod</p>
+
+        <a asp-page="/Menu" class="btn btn-pizza">Weiter einkaufen</a>
+    </div>
+}
