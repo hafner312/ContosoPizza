@@ -17,6 +17,11 @@ public class Pizza
 
     [Range(0.01, 9999.99)]
     public decimal Price { get; set; }
+
+    // Anonyme Besucher-Kennung (siehe VisitorService) - jeder Besucher
+    // bekommt seine eigene Speisekarte, damit niemand die Karte eines
+    // anderen gleichzeitigen Besuchers leerraeumen kann.
+    public string OwnerId { get; set; } = string.Empty;
 }
 
 public enum PizzaSize

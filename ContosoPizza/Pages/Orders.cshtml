@@ -1,12 +1,12 @@
 @page
 @model ContosoPizza.Pages.OrdersModel
 @{
-    ViewData["Title"] = "Bestellungen";
+    ViewData["Title"] = "Meine Bestellungen";
 }
 
 <div class="page-header">
-    <h1>Bestellungen</h1>
-    <p class="text-muted">Übersicht der zuletzt aufgegebenen Bestellungen (Demo, ohne Login).</p>
+    <h1>Meine Bestellungen</h1>
+    <p class="text-muted">Nur deine eigenen Bestellungen aus dieser Sitzung (Demo, ohne Login).</p>
 </div>
 
 @if (Model.Orders.Count == 0)

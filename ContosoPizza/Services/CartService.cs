@@ -14,11 +14,13 @@ public class CartService
 
     private readonly PizzaContext _context;
     private readonly IHttpContextAccessor _httpContextAccessor;
+    private readonly VisitorService _visitor;
 
-    public CartService(PizzaContext context, IHttpContextAccessor httpContextAccessor)
+    public CartService(PizzaContext context, IHttpContextAccessor httpContextAccessor, VisitorService visitor)
     {
         _context = context;
         _httpContextAccessor = httpContextAccessor;
+        _visitor = visitor;
     }
 
     private ISession Session => _httpContextAccessor.HttpContext!.Session;
@@ -77,8 +79,11 @@ public class CartService
         var cart = ReadCart();
         if (cart.Count == 0 || _context.Pizzas == null) return new List<CartLine>();
 
+        // Zusaetzliche Absicherung: Pizza-IDs im Warenkorb duerfen nur aus der
+        // eigenen Speisekarte stammen, nicht aus der eines anderen Besuchers.
+        var ownerId = _visitor.GetOwnerId();
         var pizzas = _context.Pizzas
-            .Where(p => cart.Keys.Contains(p.Id))
+            .Where(p => cart.Keys.Contains(p.Id) && p.OwnerId == ownerId)
             .ToDictionary(p => p.Id);
 
         return cart

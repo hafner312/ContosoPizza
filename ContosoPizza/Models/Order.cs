@@ -21,6 +21,11 @@ public class Order
     public List<OrderItem> Items { get; set; } = new();
 
     public decimal Total => Items.Sum(i => i.UnitPrice * i.Quantity);
+
+    // Anonyme Besucher-Kennung (siehe VisitorService) - Bestellungen (inkl.
+    // Name/Adresse) sollen nur der Besucher sehen, der sie selbst aufgegeben
+    // hat, nicht alle gleichzeitigen Besucher der Live-Demo.
+    public string OwnerId { get; set; } = string.Empty;
 }
 
 public enum PaymentMethod
