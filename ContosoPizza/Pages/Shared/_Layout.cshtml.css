@@ -40,10 +40,7 @@ button.accept-policy {
     line-height: inherit;
 }
 
-.footer {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    white-space: nowrap;
-    line-height: 60px;
-}
+/* Der Footer wird komplett in wwwroot/css/site.css gestaltet (Sticky-Footer-
+   Layout ueber Flexbox). Die frueheren Regeln hier - position: absolute,
+   bottom: 0, white-space: nowrap, line-height: 60px - haben dafuer gesorgt,
+   dass der Footer auf schmalen Bildschirmen verrutscht ist. */

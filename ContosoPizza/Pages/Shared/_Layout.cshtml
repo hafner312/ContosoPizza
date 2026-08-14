@@ -45,9 +45,61 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; @DateTime.Now.Year - Contoso Pizza - <a asp-area="" asp-page="/Privacy">Privacy</a>
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div class="footer-col footer-brand">
+                <span class="footer-logo">🍕 Contoso Pizza</span>
+                <p>
+                    Pizza aussuchen, in den Warenkorb legen und bestellen –
+                    eine vollständige Bestellstrecke von der Speisekarte über
+                    den Warenkorb bis zur Bestellbestätigung.
+                </p>
+            </div>
+
+            <div class="footer-col">
+                <h3>Bestellen</h3>
+                <ul>
+                    <li><a asp-area="" asp-page="/Menu">Speisekarte</a></li>
+                    <li><a asp-area="" asp-page="/Cart">Warenkorb</a></li>
+                    <li><a asp-area="" asp-page="/Orders">Meine Bestellungen</a></li>
+                    <li><a asp-area="" asp-page="/PizzaAdmin">Verwaltung</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h3>Technologie</h3>
+                <ul>
+                    <li>C# und .NET</li>
+                    <li>ASP.NET Core Razor Pages</li>
+                    <li>Entity Framework Core</li>
+                    <li>Bootstrap</li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h3>Mehr von mir</h3>
+                <ul>
+                    <li>
+                        <a href="https://hafner312.github.io/BewerbungsPortfolio/" target="_blank" rel="noopener">
+                            Portfolio-Website
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://github.com/hafner312/ContosoPizza" target="_blank" rel="noopener">
+                            Quellcode auf GitHub
+                        </a>
+                    </li>
+                    <li><a asp-area="" asp-page="/Privacy">Datenschutz</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <span>&copy; @DateTime.Now.Year Patrik Hafner</span>
+            <span class="footer-note">
+                Demo-Projekt – es werden keine echten Bestellungen ausgelöst und
+                keine Zahlungsdaten verarbeitet.
+            </span>
         </div>
     </footer>
 

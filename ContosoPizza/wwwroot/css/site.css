@@ -15,11 +15,21 @@ html {
   font-size: 16px;
 }
 
+/* Sticky-Footer-Layout: der Footer sitzt immer am unteren Rand, auch wenn die
+   Seite kurz ist - und rutscht bei langem Inhalt normal mit nach unten. */
 body {
   background-color: var(--pizza-cream);
   color: var(--pizza-text);
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  margin-bottom: 60px;
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  -webkit-text-size-adjust: 100%;
+}
+
+body > .container {
+  flex: 1 0 auto;
 }
 
 h1, h2, h3, h4 {
@@ -372,4 +382,102 @@ h1, h2, h3, h4 {
 
 .form-group {
   margin-bottom: 1rem;
+}
+
+/* ---------- Footer ---------- */
+.site-footer {
+  margin-top: auto;
+  background: #2a1a14;
+  color: #d8c9bd;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.footer-inner {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem 2.25rem;
+  display: grid;
+  grid-template-columns: 1.7fr 1fr 1fr 1fr;
+  gap: 2.25rem 2rem;
+}
+
+.footer-logo {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #fff;
+  display: block;
+  margin-bottom: 0.6rem;
+}
+
+.footer-brand p {
+  margin: 0;
+  color: #a69184;
+  max-width: 42ch;
+}
+
+.site-footer .footer-col h3 {
+  font-family: inherit;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  color: #fff;
+  margin: 0 0 0.9rem;
+}
+
+.footer-col ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.footer-col li { color: #a69184; }
+
+.site-footer .footer-col a {
+  color: #a69184;
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.site-footer .footer-col a:hover,
+.site-footer .footer-col a:focus-visible {
+  color: #fff;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 1.25rem 1.5rem 1.75rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem 1.5rem;
+  font-size: 0.82rem;
+  color: #a69184;
+}
+
+.footer-note { max-width: 52ch; }
+
+/* Ab Tablet abwaerts zweispaltig, Markenblock ueber die ganze Breite */
+@media (max-width: 860px) {
+  .footer-inner {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    padding: 2.5rem 1.25rem 1.75rem;
+    gap: 1.9rem 1.5rem;
+  }
+  .footer-brand { grid-column: 1 / -1; }
+  .footer-bottom {
+    padding: 1.1rem 1.25rem 1.5rem;
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }
